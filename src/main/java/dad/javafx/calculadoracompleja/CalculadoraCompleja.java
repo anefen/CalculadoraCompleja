@@ -4,10 +4,12 @@ import javafx.application.Application;
 import javafx.beans.binding.DoubleBinding;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -43,7 +45,6 @@ public class CalculadoraCompleja extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		operatorCombo.getItems().addAll("+", "-", "*", "/");
-		operatorCombo.getSelectionModel().selectFirst();
 		comboBox.getChildren().add(operatorCombo);
 		comboBox.setAlignment(Pos.CENTER);
 
@@ -110,7 +111,12 @@ public class CalculadoraCompleja extends Application {
 
 				}
 			} catch (Exception e2) {
-
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Calculadora Compleja");
+				alert.setHeaderText("Error");
+				alert.setContentText(e2.getMessage());
+				
+				alert.showAndWait();
 			}
 
 		});
